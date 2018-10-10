@@ -1,0 +1,340 @@
+%definitions for Formelsammlung
+
+\usepackage[left=1.5cm,right=1.5cm,top=2.5cm,bottom=2cm,landscape]{geometry} 
+\usepackage{multicol}
+\usepackage[ngerman]{babel}
+\usepackage{tabularx}
+\usepackage{mathpazo}
+\usepackage{mathtools}
+\usepackage{amsmath}  
+\usepackage{setspace} 
+\usepackage{commath}
+\usepackage[utf8]{inputenc}
+%\usepackage[ansinew]{inputenc}  
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} 
+\usepackage{hyperref}
+\usepackage{bigints}
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage{layouts}
+\usepackage{siunitx}
+\usepackage{wrapfig}
+\usepackage{multirow,bigstrut}
+\usepackage{trfsigns}
+\usepackage{amssymb} 
+\usepackage{fancyhdr}
+\usepackage{datetime}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usepackage{listings}
+\usepackage{mathrsfs}
+\usepackage{tabu}
+\usepackage{pdflscape}
+\usepackage{booktabs}
+%\usepackage{mathabx}
+\usepackage{graphicx}
+\usepackage{supertabular}
+\usepackage{siunitx}
+\usepackage[europeanvoltages, europeancurrents, europeanresistors, americaninductors, smartlabels]{circuitikz}
+\usepackage{tikz-3dplot}
+
+\DeclareMathOperator\arctanh{arctanh}
+\DeclareMathOperator\arsinh{arsinh} 
+\DeclareMathOperator\arcosh{arcosh}
+\DeclareMathOperator\artanh{artanh}
+\DeclareMathOperator\arcoth{arcoth} 
+\DeclareMathOperator\sinc{sinc} 
+\DeclareMathOperator\sgn{sgn} 
+\DeclareMathOperator\LPF{LPF} 
+\DeclareMathOperator\Q{Q} 
+\DeclareMathOperator\erf{erf} 
+\DeclareMathOperator\var{Var} 
+\DeclareMathOperator\Cov{Cov} 
+\DeclareMathOperator\floor{floor} 
+\DeclareMathOperator\E{E} 
+\DeclareMathOperator\Pr{Pr} 
+\DeclareMathOperator\NDFT{DFT} 
+\DeclareMathOperator\IDFT{IDFT} 
+\DeclareMathOperator\grad{grad} 
+\DeclareMathOperator{\divergence}{div}
+\DeclareMathOperator{\curl}{curl}
+
+
+%colorCodes
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
+\definecolor{lightGray}{gray}{0.1}
+
+\definecolor{cOrange}{HTML}{996633}
+\definecolor{clOrange}{HTML}{DBB48D}
+\definecolor{cBlue}{HTML}{336699}
+\definecolor{clBlue}{HTML}{A0BCD8}
+\definecolor{cGreen}{HTML}{339966}
+\definecolor{clGreen}{HTML}{94D4B4}
+\definecolor{cRed}{HTML}{993333}
+\definecolor{clRed}{HTML}{D0B0B0}
+\definecolor{cGray}{gray}{0.4}
+\definecolor{clGray}{gray}{0.96}
+
+
+
+\setlength{\parindent}{0pt}
+%\DeclareMathOperator\arctanh{arccot}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{Z}{>{\raggedleft\arraybackslash}X}
+\newcommand{\fmm}{\displaystyle} 
+\newcommand{\cn}[1]{\underline{#1}} 
+\newcommand{\hlaplace}{\quad\laplace\quad}
+\newcommand{\hLaplace}{\quad\Laplace\quad}
+\newcommand{\ztransform}{\, \, \xrightarrow{\, \, z\, \, } \, \,}
+\newcommand{\zTransform}{\, \, \xrightarrow{\, \, z^{-1}\, \, } \, \, }
+\newcommand{\infint}{\int_{-\infty}^{+\infty}}
+\newcommand{\infiint}{\iint_{-\infty}^{+\infty}}
+\newcommand{\limint}{\lim_{T\rightarrow \infty} \frac{1}{T} \int_{-T/2}^{T/2}}
+\newcommand{\bedeq}{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny WSS}}}{=\joinrel=}}}
+\renewcommand{\fourier}{\mathcal{F}}
+\newcommand{\infsum}[1]{\sum_{#1 = -\infty}^{\infty} }
+\newcommand{\cif}{\text{if}\:}
+\newcommand{\cand}{\:\text{and}\:}
+\newcommand{\celse}{\text{otherwise}\:}
+\renewcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\cvec}[1]{\left[\begin{smallmatrix} #1 \end{smallmatrix}\right]}
+\newcommand{\vvec}[1]{\renewcommand*{\arraystretch}{0.8}\left[\begin{array}{c} #1 \end{array}\right]}
+\renewcommand{\hat}[1]{\widehat{#1}}
+\let\oldsi\si
+\renewcommand{\si}[1]{\; \left[\oldsi[per-mode = fraction]{#1}\right]}
+\newcommand{\ex}[1]{\textcolor{cBlue}{#1}}
+\newcommand{\pdif}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdiff}[2]{\frac{\partial^2 #1}{\partial #2 ^2}}
+
+\newenvironment{cmatrix}
+    {\left( \begin{matrix}}
+    {\end{matrix} \right)}
+
+\newcommand{\plotTF}[1]{
+\begin{tikzpicture}
+\begin{axis}[xlabel=$\omega$,ylabel=$\abs{H(\omega}$, xmin = 0, xmax = 3.5, ymin = 0, ymax = 1, xtick = {3.14}, xticklabel={$\pi$}, ytick={0}, axis lines=middle, width=6cm, height=4cm, 
+every axis x label/.style={at={(ticklabel* cs:1.05)},anchor=west}]
+\addplot[name path=H, domain=0:3.14, samples=200] {#1};
+\path[name path=axis] (axis cs:0,0.01) -- (axis cs:3.14,0.01);
+\addplot[fill=clGray] fill between[of=H and axis, soft clip={domain=0.01:3.14}];
+\end{axis}
+\end{tikzpicture}
+}
+
+\newenvironment{donotbrake}{\begin{minipage}{\columnwidth}}{\end{minipage} \vspace{1em}}
+
+\newenvironment{cmat}[1]{
+  \renewcommand*{\arraystretch}{0.9}
+  \left[
+  \begin{array}{#1}
+}{
+  \end{array}
+  \right]
+}
+
+\newenvironment{case}{
+  \left\{ \begin{array}{ll}
+}{
+  \end{array} \right.
+}
+
+
+\newenvironment{scase}{
+  \renewcommand*{\arraystretch}{1}
+  \left\{ \begin{array}{ll}
+  }{
+  \end{array} \right.
+}
+
+\newcommand\xdownarrow[1][2ex]{%
+   \mathrel{\rotatebox{90}{$\xleftarrow{\rule{#1}{0pt}}$}}
+}
+
+\newcommand{\ncr}[2]{\binom{#1}{#2}}
+
+\renewenvironment{description}{\color{cGray}}{}
+\newenvironment{definition}{\color{cGray}}{} 
+\newcommand{\cdef}[1]{\begin{definition}#1\end{definition}}
+
+
+\newcommand{\vLaplace}[1][]{\mbox{\setlength{\unitlength}{0.1em}%
+        \begin{picture}(10,20)%
+          \put(3,2){\circle{4}}%
+          \put(3,4){\line(0,1){12}}%
+          \put(3,18){\circle*{4}}%
+          \put(10,7){#1}
+        \end{picture}%
+       }%
+ }%
+
+\newcommand{\vlaplace}[1][]{\mbox{\setlength{\unitlength}{0.1em}%
+        \begin{picture}(10,20)%
+          \put(3,2){\circle*{4}}%
+          \put(3,4){\line(0,1){12}}%
+          \put(3,18){\circle{4}}%
+          \put(10,7){#1}
+        \end{picture}%
+       }%
+ }%         
+ 
+           
+\newenvironment{blockdiagram}[1]{
+	\begin{tikzpicture}
+		[auto, node distance=2.5cm,>=latex', scale=#1, every node/.style={scale=#1}]
+}{
+	\end{tikzpicture}
+} 
+ 
+ 
+\renewcommand{\arraystretch}{1.5}
+
+
+\newenvironment{mtabular}[1] {
+  \renewcommand{\arraystretch}{2}
+  
+  \begin{tabular}{#1}
+}  
+{
+  \end{tabular}
+  
+  \renewcommand{\arraystretch}{1.5}
+}
+
+\newenvironment{lmtabular}[1] {
+\renewcommand{\arraystretch}{2}
+
+\begin{supertabular}{#1}
+}  
+{
+\end{supertabular}
+
+\renewcommand{\arraystretch}{1.5}
+}
+
+\newenvironment{dtabular} {
+  \begin{tabular}{>{\begin{definition}}l<{\end{definition}} >{\begin{definition}}l<{\end{definition}}}
+}  
+{
+  \end{tabular}
+}
+
+\newenvironment{ddtabular} {
+  \begin{center}
+  \begin{tabular}{>{\begin{definition}}l<{\end{definition}} >{\begin{definition}}l<{\end{definition}} | >{\begin{definition}}l<{\end{definition}} >{\begin{definition}}l<{\end{definition}}}
+}  
+{
+  \end{tabular}
+  \end{center}
+}
+
+
+%configure tikz
+%system description
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{decorations.markings}
+\tikzstyle{block} = [draw, rectangle, minimum height=2.5em, minimum width=5em]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\tikzstyle{sum} = [draw, circle, node distance=1em, minimum height=1.5em]
+\tikzset{
+	>=latex,
+	photon/.style={decorate,decoration={snake,post length=1mm}}
+}
+\tikzset{->-/.style={decoration={
+			markings,
+			mark=at position #1 with {\arrow{>}}},postaction={decorate}}}
+\tikzset{%
+  block/.style    = {draw, thick, rectangle, minimum height = 2.5em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 1.5cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate}, % Output
+  gain/.style     = {draw, thick, isosceles triangle, minimum height = 2em, isosceles triangle apex angle=60},
+  rgain/.style    = {draw, thick, isosceles triangle, minimum height = 2em, isosceles triangle apex angle=60}
+}
+
+
+%externalize TIKZ
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=tikz/]
+
+%lstlisting
+
+\lstset{
+  backgroundcolor=\color{lbcolor},
+  tabsize=2,    
+% rulecolor=,
+  language=[GNU]C++,
+  basicstyle=\scriptsize,
+  upquote=true,
+  aboveskip={1.5\baselineskip},
+  columns=fixed,
+  showstringspaces=false,
+  extendedchars=false,
+  breaklines=true,
+  prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+  frame=single,
+  numbers=none,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  identifierstyle=\ttfamily,
+  keywordstyle=\color{cBlue}
+  commentstyle=\color{cGreen},
+  stringstyle=\color{cRed},
+  numberstyle=\color{black},
+% \lstdefinestyle{C++}{language=C++,style=numbers}’.
+}
+\lstset{
+  backgroundcolor=\color{lbcolor},
+  tabsize=2,
+  language=C++,
+  captionpos=b,
+  tabsize=3,
+  frame=lines,
+  numbers=none,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  showstringspaces=false,
+  basicstyle=\ttfamily,
+  identifierstyle=\color{cOrange},
+  keywordstyle=\color{cBlue},
+  commentstyle=\color{cGreen},
+  stringstyle=\color{cRed}
+}
+
+\lstdefinelanguage{makefile}{
+  morekeywords={cc,CFLAGS,LFLAGS,OBJ,EXE},
+  morecomment=[l]{\#}
+}
+
+\lstdefinestyle{makefile}{
+  language=makefile,
+  basicstyle=\ttfamily,
+  keywordstyle=\color{cBlue},
+  commentstyle=\color{cGreen},
+  frame=lines,
+  numbers=none,
+  backgroundcolor=\color{lbcolor}
+}
+
+
+\newcolumntype{M}{>{$}c<{$}} % math-mode version of "c" column type
+
+%header & footer
+\pagestyle{fancy}
+\lhead{Tibor Schneider}
+\rhead{Seite \thepage}
+\cfoot{\today} 
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\newtheorem{theorem}{Theorem}
